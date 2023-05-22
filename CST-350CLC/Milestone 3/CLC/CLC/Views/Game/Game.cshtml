@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Game";
+}
+
+<h2>Game</h2>
+
+<style>
+
+
+    .gameBoard table {
+        border: 1px solid;
+        border-color: black;
+        border-collapse: collapse;
+        border: 0;
+    }
+
+    .gameBoard td {
+        border-color: black;
+        border: 1px solid;
+        background-color: #BCBCBC;
+        width: 32px;
+        height: 33px;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: middle;
+        padding: 0;
+    }
+</style>
+
+
+<div class="gameBoard">
+
+    <table>
+
+        @for (var y = 0; y < Model.Rows; y++)
+        {
+            <tr>
+                @for (var x = 0; x < Model.Cols; x++)
+                {
+                    <td>
+
+                        @if (Model.Cells[x, y].Visited)
+                        {
+
+                            if (Model.Cells[x, y].Bomb)
+                            {
+                                <div style="color:black; font-size:20px;">
+                                    *
+                                </div>
+                            }
+                            else
+                            {
+
+                                if (Model.Cells[x, y].LiveNeighbors > 0)
+                                {
+                                    switch (Model.Cells[x, y].LiveNeighbors)
+                                    {
+                                        case 1:
+                                             @:<font color="blue">
+                                        break;
+                                        case 2:
+                                             @:<font color="green">
+                                        break;
+                                        case 3:
+                                             @:<font color="red">
+                                        break;
+
+                                        default:
+                                             @:<font color="purple">
+                                             break;
+                                    }
+        
+                                    @Model.Cells[x, y].LiveNeighbors   
+                                    @:</font>
+                                 
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("activateCell", "Game", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value=@Model.Cells[x, y].Id>
+                                <input type="hidden" name="x" value=@Model.Cells[x, y].X>
+                                <input type="hidden" name="y" value=@Model.Cells[x, y].Y>
+                                <input type="image" name="submit" src="~/Content/images/block.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit" />
+
+                            }
+                        }
+
+
+
+
+                    </td>
+                }
+
+            </tr>
+        }
+
+
+    </table>
+    <br>
+    @using (Html.BeginForm("resetGrid", "Game", FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Reset Game" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+</div>

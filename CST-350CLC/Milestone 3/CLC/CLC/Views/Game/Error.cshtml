@@ -1,0 +1,25 @@
+﻿@model CLC.Models.Error
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Error</h2>
+
+<div>
+
+
+    <div style="color:red;">
+        @Model.Content
+    </div>
+
+
+
+    @Html.ActionLink("Login here", "index", "login", new { area = "" }, new { @class = "navbar-brand" })
+
+
+
+</div>
+

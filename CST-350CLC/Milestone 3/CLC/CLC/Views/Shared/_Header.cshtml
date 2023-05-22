@@ -1,0 +1,27 @@
+﻿<div align="center">
+    <h2>Welcome to our In-Class Activity</h2>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "index", "home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="http://www.gcu.edu" class="navbar-brand" target="_blank">GCU</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.ActionLink("Login", "index", "login", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Register", "index", "register", new { area = "" }, new { @class = "navbar-brand" })
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
