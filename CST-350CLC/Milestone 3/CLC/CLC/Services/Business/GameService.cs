@@ -10,15 +10,12 @@ namespace CLC.Services.Business.Game
 {
     public class GameService
     {
-        /** Game Service class **/
 
 
-        //returns grid for userS
         public Grid findGrid(Controller c)
         {
             User user = (User)c.Session["user"];
 
-            //System.Diagnostics.Debug.WriteLine("Loading grid for: "+user.Email);
 
             GameDAO gameDAO = new GameDAO();
 
@@ -26,7 +23,6 @@ namespace CLC.Services.Business.Game
 
         }
 
-        //deletes grid from db
         public void removeGrid(Controller c)
         {
             User user = (User)c.Session["user"];
@@ -37,13 +33,9 @@ namespace CLC.Services.Business.Game
 
         }
 
-        //activates cell in grid
         public void activateCell(Grid g, int X, int Y)
         {
 
-            //loop through cells and find what needs to be revealed
-            //reveal these cells on the grid
-            //update grid to db
 
             GameDAO gameDAO = new GameDAO();
 
@@ -76,7 +68,6 @@ namespace CLC.Services.Business.Game
 
         private void revealSurroundingCells(Grid g, int x, int y)
         {
-            //calls revealnextCell function on every coordinate surrounding the target cell
             RevealNextCell(g, x - 1, y - 1);
             RevealNextCell(g, x - 1, y);
             RevealNextCell(g, x - 1, y + 1);
@@ -90,24 +81,18 @@ namespace CLC.Services.Business.Game
         private void RevealNextCell(Grid g, int x, int y)
         {
 
-            //checks if cell is in bounds
             if (!(x >= 0 && x < g.Cols && y >= 0 && y < g.Rows)) return;
 
-            //checks if cell is visited
             if (g.Cells[x, y].Visited) return;
 
-            //checks if cell has any bombs around it
             if (g.Cells[x, y].LiveNeighbors == 0)
             {
-                //sets cell to visited and calls recursive function to cycle through its neighbors
                 g.Cells[x, y].Visited = true;
                 revealSurroundingCells(g, x, y);
             }
 
-            //checks if cell isn't a bomb
             else if (!g.Cells[x, y].Bomb)
             {
-                //sets cell to visited
                 g.Cells[x, y].Visited = true;
             }
 
@@ -121,7 +106,6 @@ namespace CLC.Services.Business.Game
             Grid grid = new Grid(-1, width, height, user.Id, false);
             Cell[,] cells = new Cell[width, height];
 
-            //intitialize cells
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -130,7 +114,6 @@ namespace CLC.Services.Business.Game
                 }
             }
 
-            //activate cells
             Random rand = new Random();
             for (int y = 0; y < height; y++)
             {
@@ -163,7 +146,6 @@ namespace CLC.Services.Business.Game
 
 
 
-            //pass Grid with populated cells to dao query
 
             GameDAO gameDAO = new GameDAO();
 

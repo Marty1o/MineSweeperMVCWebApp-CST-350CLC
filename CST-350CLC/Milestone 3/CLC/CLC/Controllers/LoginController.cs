@@ -33,7 +33,7 @@ namespace CLC.Controllers
                 if (response.Success)
                 {
 
-                    //load user model and throw in session var
+                    //load user model 
                     UserService userService = new UserService();
                     var user = userService.loadUser(loginRequest);
                     Session["user"] = user;

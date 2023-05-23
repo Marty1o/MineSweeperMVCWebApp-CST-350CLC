@@ -14,23 +14,19 @@ namespace CLC.Controllers
         // GET: Game
         public ActionResult Index()
         {
-            //create user service
             UserService userService = new UserService();
 
-            //check if user is logged in
             if (userService.loggedIn(this))
             {
 
-                //create game service object
+                
                 GameService gameService = new GameService();
 
-                //load grid for user
                 Grid g = gameService.findGrid(this);
 
-                //check if user has an existing grid saved in db
                 if (g != null)
                 {
-                    
+                    // todo
 
                 }
                 else
@@ -47,7 +43,7 @@ namespace CLC.Controllers
 
             else
             {
-                //user isn't logged in
+                //user not logged in
                 Error e = new Error("You must be logged in to access this page.");
 
                 return View("Error", e);
@@ -55,24 +51,24 @@ namespace CLC.Controllers
         }
 
 
-        //cell click form handle
+        
         [HttpPost]
         public ActionResult activateCell(string id, string x, string y)
         {
 
-            //create userservice
+            
             UserService userService = new UserService();
 
             //check if user is logged in
             if (userService.loggedIn(this))
             {
-                //update cell components
+                //update cell 
                 GameService gameService = new GameService();
 
-                //load user grid from db
+                //load user grid 
                 Grid g = gameService.findGrid(this);
 
-                //activate cell logic
+                //activate cell 
                 gameService.activateCell(g, int.Parse(x), int.Parse(y));
 
                 //return same view
@@ -80,7 +76,7 @@ namespace CLC.Controllers
             }
             else
             {
-                //user not logged in
+                
                 Error e = new Error("You must be logged in to access this page.");
 
                 return View("Error", e);
@@ -91,7 +87,6 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult resetGrid()
         {
-            //deletes grid from db
 
             GameService gameService = new GameService();
             gameService.removeGrid(this);

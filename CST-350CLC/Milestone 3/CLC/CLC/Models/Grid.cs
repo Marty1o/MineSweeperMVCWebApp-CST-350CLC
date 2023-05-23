@@ -8,6 +8,9 @@ namespace CLC.Models
     public class Grid
     {
 
+
+
+
         private int id;
         private int rows;
         private int cols;
@@ -15,8 +18,7 @@ namespace CLC.Models
         private Boolean gameOver;
         private Cell[,] cells;
 
-        /** Grid model class **/
-
+          
         public Grid(int id, int rows, int cols, int userid, bool gameOver)
         {
             this.id = id;
@@ -24,6 +26,9 @@ namespace CLC.Models
             this.cols = cols;
             this.userid = userid;
             this.gameOver = gameOver;
+
+
+
         }
 
         public int Id { get => id; set => id = value; }

@@ -8,8 +8,7 @@ namespace CLC.Models
     public class Error
     {
 
-        /** Error model class **/
-
+ 
         private string content;
 
         public Error(string content)

@@ -18,21 +18,17 @@ namespace CLC.Services.Data.Game
             Grid g = null;
             try
             {
-                // Setup SELECT query with parameters
+                
                 string query = "SELECT * FROM dbo.grids WHERE USERID=@id";
 
-                // Create connection and command
                 using (SqlConnection cn = new SqlConnection(conn))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
-                    // Set query parameters and their values
                     cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = user.Id;
   
 
-                    // Open the connection
                     cn.Open();
 
-                    // Using a DataReader see if query returns any rows
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -46,7 +42,6 @@ namespace CLC.Services.Data.Game
                         g.Cells = new Cell[cols, rows];
                     }
 
-                    // Close the connection
                     cn.Close();
                 }
 
@@ -61,21 +56,16 @@ namespace CLC.Services.Data.Game
             {
                 try
                 {
-                    // Setup SELECT query with parameters
                     string query = "SELECT * FROM dbo.cells WHERE GRIDID=@id";
 
-                    // Create connection and command
                     using (SqlConnection cn = new SqlConnection(conn))
                     using (SqlCommand cmd = new SqlCommand(query, cn))
                     {
-                        // Set query parameters and their values
                         cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = g.Id;
 
 
-                        // Open the connection
                         cn.Open();
 
-                        // Using a DataReader see if query returns any rows
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
@@ -96,14 +86,12 @@ namespace CLC.Services.Data.Game
 
                         }
 
-                        // Close the connection
                         cn.Close();
                     }
 
                 }
                 catch (SqlException e)
                 {
-                    // TODO: should log exception and then throw a custom exception
                     throw e;
                 }
             }
@@ -120,22 +108,20 @@ namespace CLC.Services.Data.Game
             int gridID = -1;
             try
             {
-                // Setup INSERT query with parameters
                 string query = "INSERT INTO dbo.grids (ROWS, COLS, USERID, GAMEOVER) " +
                     "VALUES (@Rows, @Cols, @User_ID, @GameOver) SELECT SCOPE_IDENTITY()";
 
-                // Create connection and command
                 using (SqlConnection cn = new SqlConnection(conn))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
-                    // Set query parameters and their values
+                    
                     cmd.Parameters.Add("@Rows", SqlDbType.Int, 11).Value = grid.Rows;
                     cmd.Parameters.Add("@Cols", SqlDbType.Int, 11).Value = grid.Cols;
                     cmd.Parameters.Add("@User_ID", SqlDbType.Int, 11).Value = grid.Userid;
                     cmd.Parameters.Add("@GameOver", SqlDbType.Bit).Value = grid.GameOver;
 
 
-                    // Open the connection, execute INSERT, and close the connection
+                  
                     cn.Open();
                     gridID = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -148,25 +134,23 @@ namespace CLC.Services.Data.Game
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
                 throw e;
             }
 
 
             try
             {
-                // Setup INSERT query with parameters
                 string query = "INSERT INTO dbo.cells (X, Y, BOMB, VISITED, LIVENEIGHBORS, GRIDID) " +
                     "VALUES (@x, @y, @bomb, @visited, @live, @grid)";
 
-                // Create connection and command
+             
                 for (int y = 0; y < grid.Rows; y++) {
                     for (int x = 0; x < grid.Cols; x++)
                     {
                         using (SqlConnection cn = new SqlConnection(conn))
                         using (SqlCommand cmd = new SqlCommand(query, cn))
                         {
-                            // Set query parameters and their values
+                           
                             cmd.Parameters.Add("@x", SqlDbType.Int, 11).Value = grid.Cells[x,y].X;
                             cmd.Parameters.Add("@y", SqlDbType.Int, 11).Value = grid.Cells[x, y].Y;
                             cmd.Parameters.Add("@bomb", SqlDbType.Bit).Value = grid.Cells[x, y].Bomb;
@@ -174,7 +158,6 @@ namespace CLC.Services.Data.Game
                             cmd.Parameters.Add("@live", SqlDbType.Int, 11).Value = grid.Cells[x, y].LiveNeighbors;
                             cmd.Parameters.Add("@grid", SqlDbType.Int, 11).Value = gridID;
 
-                            // Open the connection, execute INSERT, and close the connection
                             cn.Open();
                             int rows = cmd.ExecuteNonQuery();
                             cn.Close();
@@ -188,7 +171,6 @@ namespace CLC.Services.Data.Game
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
                 throw e;
             }
 
@@ -203,22 +185,18 @@ namespace CLC.Services.Data.Game
 
             try
             {
-                // Setup INSERT query with parameters
 
                 string query = "UPDATE dbo.grids SET ROWS = @Rows, COLS = @Cols, USERID = @User_ID, GAMEOVER = @GameOver WHERE ID=@id";
 
-                // Create connection and command
                 using (SqlConnection cn = new SqlConnection(conn))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
-                    // Set query parameters and their values
                     cmd.Parameters.Add("@Rows", SqlDbType.Int, 11).Value = grid.Rows;
                     cmd.Parameters.Add("@Cols", SqlDbType.Int, 11).Value = grid.Cols;
                     cmd.Parameters.Add("@User_ID", SqlDbType.Int, 11).Value = grid.Userid;
                     cmd.Parameters.Add("@GameOver", SqlDbType.Bit).Value = grid.GameOver;
                     cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = grid.Id;
 
-                    // Open the connection, execute INSERT, and close the connection
                     cn.Open();
                     cmd.ExecuteNonQuery();
 
@@ -231,21 +209,18 @@ namespace CLC.Services.Data.Game
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
                 throw e;
             }
 
 
             try
             {
-                // Setup INSERT query with parameters
 
                 string query = "UPDATE dbo.cells SET X = @x, Y = @y, BOMB = @bomb, VISITED = @visited, LIVENEIGHBORS = @live, " +
                     "GRIDID = @grid WHERE ID=@id";
 
 
 
-                // Create connection and command
                 for (int y = 0; y < grid.Rows; y++)
                 {
                     for (int x = 0; x < grid.Cols; x++)
@@ -253,7 +228,6 @@ namespace CLC.Services.Data.Game
                         using (SqlConnection cn = new SqlConnection(conn))
                         using (SqlCommand cmd = new SqlCommand(query, cn))
                         {
-                            // Set query parameters and their values
                             cmd.Parameters.Add("@x", SqlDbType.Int, 11).Value = grid.Cells[x, y].X;
                             cmd.Parameters.Add("@y", SqlDbType.Int, 11).Value = grid.Cells[x, y].Y;
                             cmd.Parameters.Add("@bomb", SqlDbType.Bit).Value = grid.Cells[x, y].Bomb;
@@ -261,7 +235,6 @@ namespace CLC.Services.Data.Game
                             cmd.Parameters.Add("@live", SqlDbType.Int, 11).Value = grid.Cells[x, y].LiveNeighbors;
                             cmd.Parameters.Add("@grid", SqlDbType.Int, 11).Value = grid.Id;
                             cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = grid.Cells[x, y].Id;
-                            // Open the connection, execute INSERT, and close the connection
                             cn.Open();
                             int rows = cmd.ExecuteNonQuery();
                             cn.Close();
@@ -273,7 +246,6 @@ namespace CLC.Services.Data.Game
             }
             catch (SqlException e)
             {
-                // TODO: should log exception and then throw a custom exception
                 throw e;
             }
 
