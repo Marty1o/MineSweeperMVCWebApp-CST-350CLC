@@ -13,7 +13,7 @@ namespace CLC.Services.Data
     {
 
 
-        string conn = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Minesweeper1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        string conn = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mine2;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
 
         public User findUser(LoginRequest loginRequest)
         {
