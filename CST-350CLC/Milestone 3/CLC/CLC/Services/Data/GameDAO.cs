@@ -11,7 +11,7 @@ namespace CLC.Services.Data.Game
     public class GameDAO
     {
 
-        string conn = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=mine2;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+        string conn = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Minesweeper1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public Grid findGrid(User user)
         {

@@ -45,8 +45,6 @@
                                             @:</font>
 
 
-
-
                                         }
                                     }
 
@@ -75,10 +73,21 @@
 
 
 </table>
-
+<br />
+<p>Last move made on @DateTime.Now</p>
 
 
 @if (Model.GameOver)
 {
     @:<font color="red">Game Over </font>
+}
+
+<!-- Reset Button-->
+@using (Html.BeginForm("resetGrid", "Game", FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Reset Game" class="btn btn-primary" />
+        </div>
+    </div>
 }

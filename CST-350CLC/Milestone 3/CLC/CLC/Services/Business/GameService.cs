@@ -36,14 +36,14 @@ namespace CLC.Services.Business.Game
         public void activateCell(Grid g, int X, int Y)
         {
 
+            // this will make every cell that has been click on as actice and show its value, will them push updated cells and grid to DB
 
             GameDAO gameDAO = new GameDAO();
 
-            Cell c = g.Cells[X, Y];
+            g.Cells[X, Y].Visited = true;
 
-            c.Visited = true;
 
-            if (c.Bomb)
+            if (g.Cells[X, Y].Bomb)
             {
                 for (int y = 0; y < g.Rows; y++)
                 {
@@ -52,12 +52,31 @@ namespace CLC.Services.Business.Game
                         g.Cells[x, y].Visited = true;
                     }
                 }
+
+                g.GameOver = true;
+
                 System.Diagnostics.Debug.WriteLine("Hit bomb at: " + X + ", " + Y);
             }
             else
             {
-                if (c.LiveNeighbors == 0)
-                    revealSurroundingCells(g, c.X, c.Y);
+                if (g.Cells[X, Y].LiveNeighbors == 0)
+                    revealSurroundingCells(g, g.Cells[X, Y].X, g.Cells[X, Y].Y);
+
+                //checks if game has been won
+                if (gameWon(g))
+                {
+
+                    //reveals whole grid
+                    for (int y = 0; y < g.Rows; y++)
+                    {
+                        for (int x = 0; x < g.Cols; x++)
+                        {
+                            g.Cells[x, y].Visited = true;
+                        }
+                    }
+
+                    g.GameOver = true;
+                }
 
             }
 
@@ -66,6 +85,23 @@ namespace CLC.Services.Business.Game
 
         }
 
+        private Boolean gameWon(Grid g)
+        {
+            //loops through every cell and checks
+            //if there's still an unvisited cell that
+            //isn't a bomb
+            for (int y = 0; y < g.Rows; y++)
+            {
+                for (int x = 0; x < g.Cols; x++)
+                {
+                    if (!g.Cells[x, y].Visited && !g.Cells[x, y].Bomb)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         private void revealSurroundingCells(Grid g, int x, int y)
         {
             RevealNextCell(g, x - 1, y - 1);

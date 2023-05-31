@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -6,19 +8,23 @@
     <!--<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />-->
     <script src="~/Scripts/lib/jquery/dist/jquery.min.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/site.js"></script>
+
+
 
 
     @RenderSection("scripts", required: false)
 
+
 </head>
 <body>
     @RenderPage("~/Views/Shared/_Header.cshtml")
-
-
 
     <div class="container body-content">
         @RenderBody()
@@ -26,9 +32,5 @@
 
     <hr />
     @RenderPage("_Footer.cshtml")
-
-
-
-
 </body>
 </html>

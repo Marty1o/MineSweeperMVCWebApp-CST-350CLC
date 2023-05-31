@@ -72,7 +72,7 @@ namespace CLC.Controllers
                 gameService.activateCell(g, int.Parse(x), int.Parse(y));
 
                 //return same view
-                return Index();
+                return PartialView("GameBoard", g);
             }
             else
             {
