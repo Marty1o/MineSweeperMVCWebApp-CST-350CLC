@@ -1,8 +1,13 @@
-﻿@{
+﻿@model CLC.Models.Grid
+
+@{
     ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>Game</h2>
+
 
 <style>
 
@@ -30,76 +35,16 @@
 
 <div class="gameBoard">
 
-    <table>
 
-        @for (var y = 0; y < Model.Rows; y++)
-        {
-            <tr>
-                @for (var x = 0; x < Model.Cols; x++)
-                {
-                    <td>
+    <div id="gamePartial">
 
-                        @if (Model.Cells[x, y].Visited)
-                        {
+        <!-- Game board partial view which is updated via AJAX -->
 
-                            if (Model.Cells[x, y].Bomb)
-                            {
-                                <div style="color:black; font-size:20px;">
-                                    *
-                                </div>
-                            }
-                            else
-                            {
-
-                                if (Model.Cells[x, y].LiveNeighbors > 0)
-                                {
-                                    switch (Model.Cells[x, y].LiveNeighbors)
-                                    {
-                                        case 1:
-                                             @:<font color="blue">
-                                        break;
-                                        case 2:
-                                             @:<font color="green">
-                                        break;
-                                        case 3:
-                                             @:<font color="red">
-                                        break;
-
-                                        default:
-                                             @:<font color="purple">
-                                             break;
-                                    }
-        
-                                    @Model.Cells[x, y].LiveNeighbors   
-                                    @:</font>
-                                 
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            using (Html.BeginForm("activateCell", "Game", FormMethod.Post))
-                            {
-                                <input type="hidden" name="id" value=@Model.Cells[x, y].Id>
-                                <input type="hidden" name="x" value=@Model.Cells[x, y].X>
-                                <input type="hidden" name="y" value=@Model.Cells[x, y].Y>
-                                <input type="image" name="submit" src="~/Content/images/block.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit" />
-
-                            }
-                        }
+        @{ Html.RenderPartial("GameBoard", Model); }
+    </div>
 
 
-
-
-                    </td>
-                }
-
-            </tr>
-        }
-
-
-    </table>
+    <!-- Reset Grid form button -->
     <br>
     @using (Html.BeginForm("resetGrid", "Game", FormMethod.Get))
     {

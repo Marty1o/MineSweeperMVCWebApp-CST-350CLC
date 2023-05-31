@@ -94,6 +94,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\block.png" />
+    <Content Include="Content\images\bomb.png" />
+    <Content Include="Content\images\flag.png" />
+    <Content Include="Content\images\flag1.png" />
     <Content Include="Content\images\visited.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -152,6 +155,7 @@
     <Content Include="Views\Game\Error.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Game\GameBoard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
