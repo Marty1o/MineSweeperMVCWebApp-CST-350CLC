@@ -133,6 +133,11 @@ namespace CLC.Services.Business.Game
             }
 
         }
+    //    public bool FlagCell(Grid g, int x, int y)
+    //    {
+
+    //        return g != null && Grid.FlagCell(x, y);
+     //   }
 
 
         public Grid createGrid(Controller c, int width, int height)
