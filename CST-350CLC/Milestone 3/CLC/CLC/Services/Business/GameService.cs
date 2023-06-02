@@ -36,7 +36,7 @@ namespace CLC.Services.Business.Game
         public void activateCell(Grid g, int X, int Y)
         {
 
-            // this will make every cell that has been click on as actice and show its value, will them push updated cells and grid to DB
+            // this will make every cell that has been click on as active and show its value, will them push updated cells and grid to DB
 
             GameDAO gameDAO = new GameDAO();
 
@@ -82,6 +82,17 @@ namespace CLC.Services.Business.Game
 
 
             gameDAO.updateGrid(g);
+
+        }
+
+        public void activateFlag(Grid g, int X, int Y)
+        {
+            GameDAO gameDAO = new GameDAO();
+
+            g.Cells[X, Y].IsFlagged = true;
+
+            gameDAO.updateGrid(g);
+
 
         }
 

@@ -76,6 +76,7 @@ namespace CLC.Services.Data.Game
                             Boolean visited = Boolean.Parse(reader["VISITED"].ToString());
                             int live = int.Parse(reader["LIVENEIGHBORS"].ToString());
                             int gridId = int.Parse(reader["GRIDID"].ToString());
+                            Boolean isFlagged = Boolean.Parse(reader["ISFLAGGED"].ToString());
 
                             Cell c = new Cell(x, y);
                             c.Id = ID;
@@ -83,6 +84,7 @@ namespace CLC.Services.Data.Game
                             c.Visited = visited;
                             c.LiveNeighbors = live;
                             g.Cells[x, y] = c;
+                            c.IsFlagged = isFlagged;
 
                         }
 
@@ -140,8 +142,8 @@ namespace CLC.Services.Data.Game
 
             try
             {
-                string query = "INSERT INTO dbo.cells (X, Y, BOMB, VISITED, LIVENEIGHBORS, GRIDID) " +
-                    "VALUES (@x, @y, @bomb, @visited, @live, @grid)";
+                string query = "INSERT INTO dbo.cells (X, Y, BOMB, VISITED, LIVENEIGHBORS, GRIDID, ISFLAGGED) " +
+                    "VALUES (@x, @y, @bomb, @visited, @live, @grid, @isFlagged)";
 
              
                 for (int y = 0; y < grid.Rows; y++) {
@@ -157,6 +159,7 @@ namespace CLC.Services.Data.Game
                             cmd.Parameters.Add("@visited", SqlDbType.Bit).Value = grid.Cells[x, y].Visited;
                             cmd.Parameters.Add("@live", SqlDbType.Int, 11).Value = grid.Cells[x, y].LiveNeighbors;
                             cmd.Parameters.Add("@grid", SqlDbType.Int, 11).Value = gridID;
+                            cmd.Parameters.Add("@isFlagged", SqlDbType.Bit).Value = grid.Cells[x, y].IsFlagged;
 
                             cn.Open();
                             int rows = cmd.ExecuteNonQuery();
@@ -217,7 +220,7 @@ namespace CLC.Services.Data.Game
             {
 
                 string query = "UPDATE dbo.cells SET X = @x, Y = @y, BOMB = @bomb, VISITED = @visited, LIVENEIGHBORS = @live, " +
-                    "GRIDID = @grid WHERE ID=@id";
+                    "GRIDID = @grid, ISFLAGGED = @isFlagged WHERE ID=@id";
 
 
 
@@ -235,6 +238,8 @@ namespace CLC.Services.Data.Game
                             cmd.Parameters.Add("@live", SqlDbType.Int, 11).Value = grid.Cells[x, y].LiveNeighbors;
                             cmd.Parameters.Add("@grid", SqlDbType.Int, 11).Value = grid.Id;
                             cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = grid.Cells[x, y].Id;
+                            cmd.Parameters.Add("@isFlagged", SqlDbType.Bit).Value = grid.Cells[x, y].IsFlagged;
+
                             cn.Open();
                             int rows = cmd.ExecuteNonQuery();
                             cn.Close();

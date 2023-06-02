@@ -83,6 +83,38 @@ namespace CLC.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult activateFlag(string id, string x, string y)
+        {
+
+
+            UserService userService = new UserService();
+
+            //check if user is logged in
+            if (userService.loggedIn(this))
+            {
+                //update cell 
+                GameService gameService = new GameService();
+
+                //load user grid 
+                Grid g = gameService.findGrid(this);
+
+                //activate cell 
+                gameService.activateFlag(g, int.Parse(x), int.Parse(y));
+
+                //return same view
+                return PartialView("GameBoard", g);
+            }
+            else
+            {
+
+                Error e = new Error("You must be logged in to access this page.");
+
+                return View("Error", e);
+            }
+        }
+
+
 
         [HttpGet]
         public ActionResult resetGrid()
