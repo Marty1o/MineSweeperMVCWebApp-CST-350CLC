@@ -137,6 +137,7 @@
     <Content Include="Content\images\flag.png" />
     <Content Include="Content\images\flag1.png" />
     <Content Include="Content\images\msbg.png" />
+    <Content Include="Content\images\msicon.png" />
     <Content Include="Content\images\visited.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

@@ -40,19 +40,4 @@ namespace CLC.Models
         public Cell[,] Cells { get => cells; set => cells = value; }
 
     }
-
-   // public bool FlagCell(int x, int y)
-   // {
-        // Get possible cell
-   //     Cell cell = GetCell(x, y);
-
-        // No cell found at location
-    //    if (cell == null) return true;
-
-        // Swap the flag status
-    //    cell.IsFlagged = !cell.IsFlagged;
-
-        // Return the cell's flag status
-    //    return cell.IsFlagged;
-   // }
 }

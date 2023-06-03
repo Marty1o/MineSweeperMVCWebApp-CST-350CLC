@@ -50,9 +50,4 @@ namespace CLC.Models
         public bool IsFlagged { get => isFlagged; set => isFlagged = value; }   
 
     }
-  //  public Cell GetCell(int x, int y)
-  //  {
-  //      if (x < 0 || x >= Size || y < 0 || y >= Size) return null;
-  //      return Grid[x, y];
-  //  }
 }
