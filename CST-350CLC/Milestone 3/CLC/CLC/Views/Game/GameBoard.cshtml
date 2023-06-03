@@ -1,19 +1,33 @@
 ﻿@model CLC.Models.Grid
 
 <script>
-    function handleClick(event) {
-        event.preventDefault();
-        var form = $(event.target).closest('form');
-        form.attr('action', '/Game/activateCell');
-        form.submit();
-    }
 
-    function handleRightClick(event) {
-        event.preventDefault();
-        var form = $(event.target).closest('form');
-        form.attr('action', '/Game/activateFlag');
-        form.submit();
-    }
+  /*  $(document).bind("contextmenu", function (e) {
+        e.preventDefault();
+    });
+    $(document).on("mousedown", "td", function (event) {
+        switch (event.buttons) {
+            case 1:
+                var form = $(event.target).closest('form');
+                form.attr('action', '/Game/activateCell');
+                form.submit();
+                console.log("Cell was left clicked to reveal");
+                break;
+            case 2:
+                var form = $(event.target).closest('form');
+                form.attr('action', '/Game/activateFlag');
+                form.submit();
+                console.log("Cell was flagged");
+                break;
+            default:
+                var form = $(event.target).closest('form');
+                form.attr('action', '/Game/deactivateFlag');
+                form.submit();
+                console.log("Cells flag was removed");
+
+        }
+    }); */
+ 
 </script>
 
 <table>
@@ -82,7 +96,7 @@
                                         <input type="hidden" name="x" value="@Model.Cells[x, y].X" />
                                         <input type="hidden" name="y" value="@Model.Cells[x, y].Y" />
                                         <input type="image" name="submit" src="~/Content/images/flag.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit"
-                                               onclick="handleClick(event)" oncontextmenu="handleRightClick(event); return false;" />
+                                               />
                                     }
 
                                 }
@@ -95,7 +109,7 @@
                                         <input type="hidden" name="x" value="@Model.Cells[x, y].X" />
                                         <input type="hidden" name="y" value="@Model.Cells[x, y].Y" />
                                         <input type="image" name="submit" src="~/Content/images/block.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit"
-                                               onclick="handleClick(event)" oncontextmenu="handleRightClick(event); return false;" />
+                                              />
                                     }
                                 }
                             }

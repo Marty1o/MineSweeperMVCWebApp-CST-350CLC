@@ -103,6 +103,24 @@ namespace CLC.Services.Business.Game
 
 
         }
+        public void deactivateFlag(Grid g, int X, int Y)
+        {
+
+            // Toggle the value of IsFlagged
+            //TODO: toggle not working properly, toggle will work in view but then revert back to inital state? leaving as it for now but once cell is flagged it cant 
+            //be unflagged, however, flag also now acts as proper cell and can still be clicked to reveil bomb or cell value as normal
+            //g.Cells[X, Y].IsFlagged = !g.Cells[X, Y].IsFlagged;
+
+            GameDAO gameDAO = new GameDAO();
+
+            g.Cells[X, Y].IsFlagged = false;
+
+            gameDAO.updateGrid(g);
+
+
+
+
+        }
 
         private Boolean gameWon(Grid g)
         {
