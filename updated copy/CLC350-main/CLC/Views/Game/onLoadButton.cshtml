@@ -1,0 +1,38 @@
+﻿@model  IEnumerable<CLC.Models.SavedGame>
+
+<div>
+    <h4>SavedGames</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+<dl class="dl-horizontal">
+    <dd>
+        <p>Id:</p>
+        @Html.DisplayFor(model => item.id)
+    </dd>
+    <dd>
+        <p>GridId:</p>
+        @Html.DisplayFor(model => item.gridId)
+    </dd>
+
+    <dd>
+        <p>Rows:</p>
+        @Html.DisplayFor(model => item.rows)
+    </dd>
+
+    <dd>
+        <p>Cols:</p>
+        @Html.DisplayFor(model => item.cols)
+    </dd>
+
+    <dd>
+        <p>Date:</p>
+        @Html.DisplayFor(model => item.date)
+    </dd>
+
+</dl>
+    } 
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

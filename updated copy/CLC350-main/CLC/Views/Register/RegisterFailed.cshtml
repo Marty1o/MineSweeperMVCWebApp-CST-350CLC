@@ -1,0 +1,18 @@
+﻿@model CLC.Models.RegisterResponse
+
+
+@{
+    ViewBag.Title = "RegisterFailed";
+}
+
+<h2>Register Failed</h2>
+
+<div>
+    <font color="red">
+        @Html.Raw(HttpUtility.HtmlDecode(@Model.Message))
+    </font>
+</div>
+
+<div>
+    @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+</div>

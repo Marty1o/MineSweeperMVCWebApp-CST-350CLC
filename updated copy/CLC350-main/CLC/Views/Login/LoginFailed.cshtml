@@ -1,0 +1,19 @@
+﻿@model CLC.Models.LoginResponse
+
+
+@{
+    ViewBag.Title = "LoginFailed";
+}
+
+<h2>Login Failed</h2>
+
+<div>
+    <font color="red">
+        @Html.Raw(HttpUtility.HtmlDecode(@Model.Message))
+
+    </font>
+</div>
+
+<div>
+    @Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })
+</div>
