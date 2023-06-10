@@ -1,0 +1,123 @@
+﻿@model CLC.Models.Grid
+
+
+<table>
+
+    @for (var y = 0; y < Model.Rows; y++)
+    {
+        <tr>
+            @for (var x = 0; x < Model.Cols; x++)
+            {
+                //nested for loop that loops through every row and collumn of game cells and displays them in html table style grid
+            <td>
+
+
+                @if (Model.Cells[x, y].Visited)
+                {
+
+                    if (Model.Cells[x, y].Bomb)
+                    {
+                        <div style="color:black; font-size:20px;">
+                            <img src="~/Content/images/bomb.png" style="width:31px; height:32px; display:block;" alt="Bomb" />
+                        </div>
+                    }
+                    else
+                    {
+
+                        if (Model.Cells[x, y].LiveNeighbors > 0)
+                        {
+                            switch (Model.Cells[x, y].LiveNeighbors)
+                            {
+                                case 1:
+                                    @:<font color="blue">
+                                        break;
+                                    case 2:
+                                        @:<font color="green">
+                                            break;
+                                        case 3:
+                                            @:<font color="red">
+                                                break;
+
+                                            default:
+                                                @:<font color="purple">
+                                                    break;
+                                            }
+
+                                            @Model.Cells[x, y].LiveNeighbors
+                                        @:</font>
+
+
+
+
+                                    }
+                                }
+
+                            }
+
+                            else
+                            {
+                                if (Model.Cells[x, y].IsFlagged)
+                                {
+
+
+                                    //ajax form for cells
+                                    using (Ajax.BeginForm("activateFlag", "Game", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "gamePartial" }, new { @class = "ajax-form" }))
+                                    {
+                                        <input type="hidden" name="id" value="@Model.Cells[x, y].Id" />
+                                        <input type="hidden" name="x" value="@Model.Cells[x, y].X" />
+                                        <input type="hidden" name="y" value="@Model.Cells[x, y].Y" />
+                                        <input type="image" name="submit" src="~/Content/images/flag.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit"
+                                               />
+                                    }
+
+                                }
+                                else
+                                {
+                                    //ajax form for cells
+                                    using (Ajax.BeginForm("activateCell", "Game", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "gamePartial" }, new { @class = "ajax-form" }))
+                                    {
+                                        <input type="hidden" name="id" value="@Model.Cells[x, y].Id" />
+                                        <input type="hidden" name="x" value="@Model.Cells[x, y].X" />
+                                        <input type="hidden" name="y" value="@Model.Cells[x, y].Y" />
+                                        <input type="image" name="submit" src="~/Content/images/block.png" style="width:31px; height:32px; display:block;" border="0" alt="Submit"
+                                              />
+                                    }
+                                }
+                            }
+
+            </td>
+}
+
+        </tr>
+    }
+
+
+</table>
+<br />
+<p>Last move made on @DateTime.Now</p>
+
+
+@if (Model.GameOver)
+{
+    @:<font color="red">Game Over </font>
+}
+
+<!--Save Game Button-->
+@using (Html.BeginForm("onSaveButton", "Game", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save Game" class="btn btn-primary" />
+        </div>
+    </div>
+}
+<!-- Reset Button-->
+@using (Html.BeginForm("resetGrid", "Game", FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Reset Game" class="btn btn-primary" />
+        </div>
+    </div>
+}
+

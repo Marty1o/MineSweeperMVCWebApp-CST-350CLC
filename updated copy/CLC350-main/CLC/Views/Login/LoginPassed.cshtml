@@ -1,0 +1,22 @@
+﻿@model CLC.Models.LoginRequest
+
+@{
+    ViewBag.Title = "LoginPassed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Login Passed</h2>
+
+<div>
+    <div>
+        Sucessfully logged in as @Model.Username
+    </div>
+
+
+    @Html.ActionLink("Play Game", "index", "game", new { area = "" }, new { @class = "navbar-brand" })
+
+
+
+</div>
+
