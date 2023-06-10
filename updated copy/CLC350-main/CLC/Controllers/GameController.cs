@@ -164,5 +164,14 @@ namespace CLC.Controllers
             service.removeGrid(this);
             return Index();
         }
+
+        [HttpGet]
+        public ActionResult onLoadButton()
+        {
+            GameService service = new GameService();
+            List<SavedGame> savedGames;
+            savedGames = service.loadGames(this);
+            return View(savedGames);
+        }
     }
 }

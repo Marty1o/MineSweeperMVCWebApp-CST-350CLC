@@ -292,10 +292,88 @@ namespace CLC.Services.Data.Game
 
         public void saveGame(string serializedGame, int userId)
         {
-            //print the serialized string to ensure it works properly.
-            System.Diagnostics.Debug.WriteLine(serializedGame + " " + userId);
+            //Save game to the DB
 
-            
+            try
+            {
+                //Create the query
+                string query = "INSERT INTO dbo.SavedGames (UserId, Date, SavedGame) VALUES (@userId, @date, @savedGame)";
+
+                //Create connection and command
+                using (SqlConnection cn = new SqlConnection(conn))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    //Add parameters to command
+                    cmd.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
+                    cmd.Parameters.Add("@date", SqlDbType.DateTime).Value = DateTime.Now;
+                    cmd.Parameters.Add("@savedGame", SqlDbType.VarChar, 500).Value = serializedGame;
+
+                    //Open the connection
+                    cn.Open();
+                    //Execute prepared SQL
+                    cmd.ExecuteNonQuery();
+                    //Close the connection
+                    cn.Close();
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+
+
+        }
+
+        public List<SavedGame> loadUserGames(User user)
+        {
+            //Create the list of games to return.
+            List<SavedGame> savedGames = new List<SavedGame>();
+
+            try
+            {
+                //Create the query
+                string query = "SELECT * FROM dbo.SavedGames WHERE UserId = @userId";
+
+                //Create a placeholder SavedGame object.
+                SavedGame currentSavedGame;
+
+                //Create connection and command
+                using (SqlConnection cn = new SqlConnection(conn))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    cmd.Parameters.Add("@userId", SqlDbType.Int).Value = user.Id;
+
+                    //Open the connection
+                    cn.Open();
+
+                    //Execute command.
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    XmlSerializer deserializer = new XmlSerializer(typeof(SavedGame));
+                    while (reader.Read())
+                    {
+                        //Deserialize the XML
+                        using(TextReader tr = new StringReader((string)reader[3]))
+                        {
+                            currentSavedGame = (SavedGame)deserializer.Deserialize(tr);
+                        }
+
+                        //Re-set the Id of the savedgame.
+                        currentSavedGame.id = (int)reader[0];
+                        savedGames.Add(currentSavedGame);
+                    }
+
+                    //Close the connection
+                    cn.Close();
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+            //Return the list of SavedGame objects.
+            return savedGames;
         }
 
     }

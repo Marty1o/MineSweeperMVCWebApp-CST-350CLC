@@ -110,7 +110,6 @@ C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\bin\Unity.Abstractions.pdb
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\bin\Unity.Container.pdb
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\bin\Unity.Mvc.pdb
-C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CST350CLC.csproj.AssemblyReference.cache
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CST350CLC.csproj.CoreCompileInputs.cache
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CST350CLC.csproj.CopyComplete
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CLC.dll

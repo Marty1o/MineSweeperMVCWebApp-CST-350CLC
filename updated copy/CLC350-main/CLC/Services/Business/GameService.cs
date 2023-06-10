@@ -32,6 +32,7 @@ namespace CLC.Services.Business.Game
             gameToSave.gridId = grid.Id;
             gameToSave.rows = grid.Rows;
             gameToSave.cols = grid.Cols;
+            gameToSave.date = DateTime.Now;
 
             //Create the serialized string variable
             string serializedGame = string.Empty;
@@ -47,6 +48,20 @@ namespace CLC.Services.Business.Game
 
             //pass the serialized game string to the DAO to be saved to the DB.
             gameDAO.saveGame(serializedGame, user.Id); 
+        }
+
+        public List<SavedGame> loadGames(Controller c)
+        {
+            //Get the current user.
+            User user = (User)c.Session["user"];
+
+            //Create instance of the DAO
+            GameDAO gameDAO = new GameDAO();
+
+            //Call the loadUserGames and pass user
+            List<SavedGame> savedGames = gameDAO.loadUserGames(user);
+
+            return savedGames;
         }
         public Grid findGrid(Controller c)
         {
