@@ -422,6 +422,55 @@ namespace CLC.Services.Data.Game
             }
 
         }
+        internal IEnumerable<SavedGame> AllGames()
+        {
+            //Create the list of games to return.
+            List<SavedGame> savedGames = new List<SavedGame>();
 
+            try
+            {
+                //Create the query
+                string query = "SELECT * FROM dbo.SavedGames WHERE Id = ?";
+
+                //Create a placeholder SavedGame object.
+                SavedGame currentSavedGame;
+
+                //Create connection and command
+                using (SqlConnection cn = new SqlConnection(conn))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    // cmd.Parameters.Add("@userId", SqlDbType.Int).Value = user.Id;
+
+                    //Open the connection
+                    cn.Open();
+
+                    //Execute command.
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    XmlSerializer deserializer = new XmlSerializer(typeof(SavedGame));
+                    //  while (reader.Read())
+                    //  {
+                    //Deserialize the XML
+                    //     using (TextReader tr = new StringReader((string)reader[3]))
+                    //      {
+                    //         currentSavedGame = (SavedGame)deserializer.Deserialize(tr);
+                    //     }
+
+                    //Re-set the Id of the savedgame.
+                    // currentSavedGame.id = (int)reader[0];
+                    // savedGames.Add(currentSavedGame);
+                    //   }
+
+                    //Close the connection
+                    cn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            //Return the list of SavedGame objects.
+            return savedGames;
+        }
     }
 }
