@@ -1,38 +1,68 @@
-﻿@model  IEnumerable<CLC.Models.SavedGame>
+﻿@model IEnumerable<CLC.Models.SavedGame>
 
 <div>
     <h4>SavedGames</h4>
     <hr />
     @foreach (var item in Model)
     {
-<dl class="dl-horizontal">
-    <dd>
-        <p>Id:</p>
-        @Html.DisplayFor(model => item.id)
-    </dd>
-    <dd>
-        <p>GridId:</p>
-        @Html.DisplayFor(model => item.gridId)
-    </dd>
-
-    <dd>
-        <p>Rows:</p>
-        @Html.DisplayFor(model => item.rows)
-    </dd>
-
-    <dd>
-        <p>Cols:</p>
-        @Html.DisplayFor(model => item.cols)
-    </dd>
-
-    <dd>
-        <p>Date:</p>
-        @Html.DisplayFor(model => item.date)
-    </dd>
-
-</dl>
-    } 
+        <div class="game-item">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <td>@Html.DisplayFor(model => item.id)</td>
+                </tr>
+                <tr>
+                    <th>GridId</th>
+                    <td>@Html.DisplayFor(model => item.gridId)</td>
+                </tr>
+                <tr>
+                    <th>Rows</th>
+                    <td>@Html.DisplayFor(model => item.rows)</td>
+                </tr>
+                <tr>
+                    <th>Cols</th>
+                    <td>@Html.DisplayFor(model => item.cols)</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>@Html.DisplayFor(model => item.date)</td>
+                </tr>
+            </table>
+            <div class="button-container">
+                <button class="btn btn-danger delete-button" data-id="@item.id">Delete</button>
+                <button class="btn btn-primary select-button">Select</button>
+            </div>
+        </div>
+        <hr />
+    }
 </div>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".delete-button").click(function () {
+                var gameId = $(this).data("id");
+                deleteSavedGame(gameId);
+            });
+        });
+
+        function deleteSavedGame(id) {
+            $.ajax({
+                url: '@Url.Action("deleteSavedGame", "Game")',
+                type: 'POST',
+                data: { id: id },
+                success: function (result) {
+                    // Reload the page after successful deletion
+                    location.reload();
+                },
+                error: function (error) {
+                    // Handle error response, if needed
+                }
+            });
+        }
+    </script>
+}

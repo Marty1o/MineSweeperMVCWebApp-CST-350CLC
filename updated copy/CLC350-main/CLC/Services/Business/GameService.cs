@@ -13,6 +13,19 @@ namespace CLC.Services.Business.Game
     public class GameService
     {
 
+        // void playSavedGame(int userID, int gridID, int rows, int cols)
+        //{
+        //
+        //}
+
+        public void deleteSavedGame(int gameId)
+        {
+            Console.WriteLine("Delete saved game was clicked and we are inside the service for deleteSavedGame");
+
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.deleteSavedGame(gameId);
+        }
+
         public void saveGame(Controller c)
         {
             //Grab the user

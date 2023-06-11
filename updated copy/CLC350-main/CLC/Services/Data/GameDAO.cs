@@ -288,7 +288,7 @@ namespace CLC.Services.Data.Game
             }
 
 
-}
+        }
 
         public void saveGame(string serializedGame, int userId)
         {
@@ -374,6 +374,53 @@ namespace CLC.Services.Data.Game
 
             //Return the list of SavedGame objects.
             return savedGames;
+        }
+
+        public void deleteSavedGame(int Id)
+        {
+            string query = "DELETE FROM dbo.SavedGames WHERE Id = @Id";
+
+            using (SqlConnection cn = new SqlConnection(conn))
+            using (SqlCommand cmd = new SqlCommand(query, cn))
+            {
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void playSavedGame(int userID, int gridID, int rows, int cols)
+        {
+
+            try
+            {
+
+                string query = "UPDATE dbo.grids SET ROWS = @Rows, COLS = @Cols, USERID = @User_ID, GAMEOVER = @GameOver WHERE ID=@id";
+
+                using (SqlConnection cn = new SqlConnection(conn))
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    cmd.Parameters.Add("@Rows", SqlDbType.Int, 11).Value = rows;
+                    cmd.Parameters.Add("@Cols", SqlDbType.Int, 11).Value = cols;
+                    cmd.Parameters.Add("@User_ID", SqlDbType.Int, 11).Value = userID;
+                    //cmd.Parameters.Add("@GameOver", SqlDbType.Bit).Value = grid.GameOver;
+                    cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = gridID;
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+
+
+
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+
         }
 
     }

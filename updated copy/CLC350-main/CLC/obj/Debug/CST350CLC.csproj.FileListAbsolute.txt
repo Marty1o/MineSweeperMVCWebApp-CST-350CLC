@@ -114,3 +114,42 @@ C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CST350CLC.csproj.CopyComplete
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CLC.dll
 C:\Users\btzla\Documents\Programming\Projects\CST-350 CLC\CST-350CLC\CST-350CLC\Milestone 3\CLC\CLC\obj\Debug\CLC.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\CLC.dll.config
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\CLC.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\CLC.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Antlr3.Runtime.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Newtonsoft.Json.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Helpers.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Mvc.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Razor.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.Razor.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Abstractions.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Container.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Mvc.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\WebActivatorEx.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\WebGrease.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Antlr3.Runtime.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Newtonsoft.Json.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Helpers.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Mvc.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.Razor.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\System.Web.WebPages.Razor.xml
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Abstractions.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Container.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\bin\Unity.Mvc.pdb
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\obj\Debug\CST350CLC.csproj.AssemblyReference.cache
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\obj\Debug\CST350CLC.csproj.CoreCompileInputs.cache
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\obj\Debug\CST350CLC.csproj.CopyComplete
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\obj\Debug\CLC.dll
+C:\Users\Marty\source\CST350\CLC\updated copy\CLC350-main\CLC\obj\Debug\CLC.pdb
