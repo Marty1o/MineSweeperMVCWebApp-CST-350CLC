@@ -391,11 +391,12 @@ namespace CLC.Services.Data.Game
 
         public void playSavedGame(int userID, int gridID, int rows, int cols)
         {
+            Grid g = null;
 
             try
             {
 
-                string query = "UPDATE dbo.grids SET ROWS = @Rows, COLS = @Cols, USERID = @User_ID, GAMEOVER = @GameOver WHERE ID=@id";
+                string query = "UPDATE dbo.grids SET ID=@id, ROWS = @Rows, COLS = @Cols WHERE USERID=@User_ID";
 
                 using (SqlConnection cn = new SqlConnection(conn))
                 using (SqlCommand cmd = new SqlCommand(query, cn))
@@ -403,7 +404,7 @@ namespace CLC.Services.Data.Game
                     cmd.Parameters.Add("@Rows", SqlDbType.Int, 11).Value = rows;
                     cmd.Parameters.Add("@Cols", SqlDbType.Int, 11).Value = cols;
                     cmd.Parameters.Add("@User_ID", SqlDbType.Int, 11).Value = userID;
-                    //cmd.Parameters.Add("@GameOver", SqlDbType.Bit).Value = grid.GameOver;
+                   
                     cmd.Parameters.Add("@id", SqlDbType.Int, 11).Value = gridID;
 
                     cn.Open();

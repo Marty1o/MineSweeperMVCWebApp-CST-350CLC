@@ -12,6 +12,10 @@
                     <td>@Html.DisplayFor(model => item.id)</td>
                 </tr>
                 <tr>
+                    <th>UserId</th>
+                    <td>@Html.DisplayFor(model => item.userId)</td>
+                </tr>
+                <tr>
                     <th>GridId</th>
                     <td>@Html.DisplayFor(model => item.gridId)</td>
                 </tr>
@@ -30,7 +34,7 @@
             </table>
             <div class="button-container">
                 <button class="btn btn-danger delete-button" data-id="@item.id">Delete</button>
-                <button class="btn btn-primary select-button">Select</button>
+                <button class="btn btn-primary select-button" data-userid="@item.userId" data-gridid="@item.gridId" data-rows="@item.rows" data-cols="@item.cols">Select</button>
             </div>
         </div>
         <hr />
@@ -48,16 +52,40 @@
                 var gameId = $(this).data("id");
                 deleteSavedGame(gameId);
             });
+
+            $(".select-button").click(function () {
+                var userId = $(this).data("userid");
+                var gridId = $(this).data("gridid");
+                var rows = $(this).data("rows");
+                var cols = $(this).data("cols");
+                playSavedGame(userId, gridId, rows, cols);
+            });
         });
 
         function deleteSavedGame(id) {
+    $.ajax({
+        url: '@Url.Action("deleteSavedGame", "Game")',
+        type: 'POST',
+        data: { id: id },
+        success: function (result) {
+            // Handle success response, if needed
+            // Reload the page to update the view
+            location.reload();
+        },
+        error: function (error) {
+            // Handle error response, if needed
+        }
+    });
+}
+
+
+        function playSavedGame(userId, gridId, rows, cols) {
             $.ajax({
-                url: '@Url.Action("deleteSavedGame", "Game")',
+                url: '@Url.Action("playSavedGame", "Game")',
                 type: 'POST',
-                data: { id: id },
+                data: { userId: userId, gridId: gridId, rows: rows, cols: cols },
                 success: function (result) {
-                    // Reload the page after successful deletion
-                    location.reload();
+                    // Handle success response, if needed
                 },
                 error: function (error) {
                     // Handle error response, if needed

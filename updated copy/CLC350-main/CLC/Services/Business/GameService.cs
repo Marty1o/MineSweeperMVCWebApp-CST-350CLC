@@ -13,10 +13,12 @@ namespace CLC.Services.Business.Game
     public class GameService
     {
 
-        // void playSavedGame(int userID, int gridID, int rows, int cols)
-        //{
-        //
-        //}
+        public void playSavedGame(int userID, int gridID, int rows, int cols)
+        {
+            
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.playSavedGame(userID, gridID, rows, cols);
+        }
 
         public void deleteSavedGame(int gameId)
         {
@@ -42,6 +44,7 @@ namespace CLC.Services.Business.Game
             SavedGame gameToSave = new SavedGame();
 
             //Populate the gameToSave
+            gameToSave.userId = user.Id;
             gameToSave.gridId = grid.Id;
             gameToSave.rows = grid.Rows;
             gameToSave.cols = grid.Cols;
